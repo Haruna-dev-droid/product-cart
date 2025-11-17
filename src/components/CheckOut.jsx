@@ -5,7 +5,11 @@ import Cart from "./Cart.jsx";
 
 function CheckOut({ isOpen, onClose, children }) {
   if (!isOpen) return null;
-  const { cart, getTotalPrice } = useCart();
+  const { cart, getTotalPrice, clearCart } = useCart();
+  function handleClick(onClose, clearCart) {
+    onClose();
+    clearCart();
+  }
 
   return (
     <div onClick={onClose}>
@@ -24,7 +28,9 @@ function CheckOut({ isOpen, onClose, children }) {
         ))}
         <p>Total: ${getTotalPrice().toFixed(2)}</p>
         {/* <Cart /> */}
-        <button onClick={onClose}>Start New Order</button>
+        <button onClick={() => handleClick(onClose, clearCart)}>
+          Start New Order
+        </button>
       </div>
     </div>
   );
