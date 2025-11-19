@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Data from "../data.json";
 import { useCart } from "./CartContext.jsx";
+import SearchFilter from "./SearchFilter.jsx";
 // import Cart from "./Cart.jsx";
 
-export default function DessertsList() {
+export default function ProductsList() {
   const [products, setProducts] = useState([]);
   const { addToCart } = useCart();
 
@@ -15,6 +16,7 @@ export default function DessertsList() {
   }, []);
   return (
     <div>
+      {/* <SearchFilter products={products} /> */}
       <h1 className="text-3xl font-bold underline">Product List</h1>
       <div className="grid grid-cols-3 gap-15 p-20">
         {products.map((product) => (
