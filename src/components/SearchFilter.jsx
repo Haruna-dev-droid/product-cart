@@ -21,7 +21,7 @@ function SearchFilter({ products }) {
       <input
         type="text"
         placeholder="Search products..."
-        className="bg-gray-500 rounded-full p-1.5 px-8 text-white w-80 relative z-20"
+        className="bg-white/20  rounded-full p-1.5 px-8 text-white w-80 relative z-20"
         onChange={(e) => setSearch(e.target.value)}
       />
       {/* <button className="bg-black rounded-full p-2">🔍</button> */}
