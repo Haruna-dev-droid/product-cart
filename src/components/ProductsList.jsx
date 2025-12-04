@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Data from "../data.json";
 import { useCart } from "./CartContext.jsx";
 import SearchFilter from "./SearchFilter.jsx";
@@ -8,10 +9,11 @@ import ProductFilter from "./ProductFilter.jsx";
 // import Cart from "./Cart.jsx";
 
 export default function ProductsList() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const { addToCart } = useCart();
-  const [showProduct, setShowProduct] = useState([]);
+  // const [showProduct, setShowProduct] = useState([]);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -47,6 +49,7 @@ export default function ProductsList() {
         {filteredProducts.map((product) => (
           <div
             key={product.id}
+            onClick={() => navigate(`/product/${product.id}`)}
             className="p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col"
           >
             <div className="p-5 h-70 flex items-center justify-center mb-4 bg-gray-100 rounded-xl overflow-hidden">
