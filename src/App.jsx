@@ -73,6 +73,7 @@
 
 // export default App;
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ProductsList from "./components/ProductsList.jsx";
 import Cart from "./components/Cart";
@@ -81,6 +82,7 @@ import LandingPage from "./components/LandingPage.jsx";
 import ShowProduct from "./components/ShowProduct.jsx";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile.jsx";
+
 function App() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null); // show one product
@@ -92,24 +94,39 @@ function App() {
   }, []);
 
   return (
-    <CartProvider>
-      <Profile />
-      <SignUp />
-      <Cart />
-
-      {/* If a product is selected -> show details */}
-      {selectedProduct ? (
-        <ShowProduct
-          product={selectedProduct}
-          onBack={() => setSelectedProduct(null)}
-        />
-      ) : (
-        <>
-          <LandingPage products={products} />
-          <ProductsList products={products} onSelect={setSelectedProduct} />
-        </>
-      )}
-    </CartProvider>
+    <Router>
+      <CartProvider>
+        <Cart />
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route
+            path="/"
+            element={
+              selectedProduct ? (
+                <ShowProduct
+                  product={selectedProduct}
+                  onBack={() => setSelectedProduct(null)}
+                />
+              ) : (
+                <>
+                  <LandingPage products={products} />
+                  <ProductsList
+                    products={products}
+                    onSelect={setSelectedProduct}
+                  />
+                </>
+              )
+            }
+          />
+          <Route
+            path="/products"
+            element={<ProductsList products={products} />}
+          />
+          <Route path="/product/:id" element={<ShowProduct />} />
+        </Routes>
+      </CartProvider>
+    </Router>
   );
 }
 

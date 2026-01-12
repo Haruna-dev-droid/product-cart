@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Profile() {
   const userStats = [
@@ -20,6 +21,7 @@ export default function Profile() {
             <button className="p-2 hover:bg-white rounded-lg transition text-slate-600 text-xl">
               🚪
             </button>
+            <NavLink to="/">Go to Home</NavLink>
           </div>
         </div>
 

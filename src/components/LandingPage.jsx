@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import Image1 from "../assets/images/pixelcut-export (26).png";
 import SearchFilter from "./SearchFilter.jsx";
 import Logo from "./Logo.jsx";
@@ -26,7 +27,13 @@ function LandingPage({ products }) {
   return (
     <div className=" bg-linear-to-r from-black to-black/95 text-white ">
       <div className=" p-4 ">
-        <div className=" bg-black/60 backdrop-blur-md fixed top-2 flex gap-80 p-2 h-12 font-bold  justify-between  items-center rounded-full">
+        <NavLink
+          to="/signup"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Sign Up
+        </NavLink>
+        <div className=" bg-black/60 backdrop-blur-md top-2 flex gap-80 p-2 h-12 font-bold  justify-between  items-center rounded-full">
           <span className="flex items-center -ml-4">
             <Logo size={50} color={"#111"} />
           </span>
