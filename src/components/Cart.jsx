@@ -1,17 +1,11 @@
 import React from "react";
+// import { useState } from "react";
 import { useCart } from "./CartContext.jsx";
 import CheckOut from "./CheckOut.jsx";
 
 function Cart({ isOpen, onClose }) {
-  if (!isOpen) return null;
   const [isCheckoutOpen, setIsCheckoutOpen] = React.useState(false);
 
-  const handleOpenCheckout = () => {
-    setIsCheckoutOpen(true);
-  };
-  const handleCloseCheckout = () => {
-    setIsCheckoutOpen(false);
-  };
   const {
     addToCart,
     cart,
@@ -21,6 +15,15 @@ function Cart({ isOpen, onClose }) {
     getTotalPrice,
     confirmCart,
   } = useCart();
+
+  if (!isOpen) return null;
+
+  const handleOpenCheckout = () => {
+    setIsCheckoutOpen(true);
+  };
+  const handleCloseCheckout = () => {
+    setIsCheckoutOpen(false);
+  };
 
   return (
     <>

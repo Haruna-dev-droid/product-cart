@@ -48,6 +48,12 @@ function LandingPage({ products }) {
               {" "}
               <a href="">Contact</a>{" "}
             </li>
+
+            <li>
+              <a href="" className="border rounded-full p-1">
+                👤
+              </a>{" "}
+            </li>
           </ul>
         </div>
       </div>

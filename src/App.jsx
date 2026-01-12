@@ -79,7 +79,8 @@ import Cart from "./components/Cart";
 import CartProvider from "./components/CartContext.jsx";
 import LandingPage from "./components/LandingPage.jsx";
 import ShowProduct from "./components/ShowProduct.jsx";
-
+import SignUp from "./components/SignUp";
+import Profile from "./components/Profile.jsx";
 function App() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null); // show one product
@@ -92,6 +93,8 @@ function App() {
 
   return (
     <CartProvider>
+      <Profile />
+      <SignUp />
       <Cart />
 
       {/* If a product is selected -> show details */}
