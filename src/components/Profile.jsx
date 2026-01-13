@@ -1,7 +1,19 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function Profile() {
+  const location = useLocation();
+  const [user, setUser] = useState(() => {
+    const savedUserData = localStorage.getItem("userData");
+    return savedUserData ? JSON.parse(savedUserData) : null;
+  });
+
+  useEffect(() => {
+    if (location.state?.userData) {
+      setUser(location.state.userData);
+      localStorage.setItem("userData", JSON.stringify(location.state.userData));
+    }
+  }, [location.state]);
   const userStats = [
     { label: "Total Spent", value: "$2,450", percentage: 65 },
     { label: "Orders", value: "24", percentage: 45 },
@@ -9,7 +21,7 @@ export default function Profile() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white p-8 mt-10">
+    <div className="min-h-screen bg-black text-white p-8 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-12">
@@ -32,8 +44,12 @@ export default function Profile() {
               👤
             </div>
             <div>
-              <h2 className="text-2xl font-light ">Sarah Johnson</h2>
-              <p className="text-sm text-slate-500">sarah.johnson@email.com</p>
+              <h2 className="text-2xl font-light ">
+                {user ? `${user.firstName} ${user.lastName}` : "Guest User"}
+              </h2>
+              <p className="text-sm text-slate-500">
+                {user ? `${user.email}` : "Guest User"}
+              </p>
               <p className="text-xs text-slate-400 mt-1">
                 Member since Jan 2024
               </p>

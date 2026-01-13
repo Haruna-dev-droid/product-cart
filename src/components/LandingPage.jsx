@@ -57,9 +57,9 @@ function LandingPage({ products }) {
             </li>
 
             <li>
-              <a href="" className="border rounded-full p-1">
+              <NavLink to="/profile" className="border rounded-full p-1">
                 👤
-              </a>{" "}
+              </NavLink>{" "}
             </li>
           </ul>
         </div>
