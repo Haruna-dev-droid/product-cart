@@ -40,7 +40,7 @@ export default function Profile() {
         {/* User Card */}
         <div className="bg-white/10 rounded-2xl p-8 mb-8 shadow-sm">
           <div className="flex items-center gap-6">
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-3xl">
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-3xl">
               👤
             </div>
             <div>

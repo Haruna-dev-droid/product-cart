@@ -5,8 +5,8 @@ export default function Logo({ size = 120, color = "#111" }) {
     <div>
       {" "}
       <svg
-        width="200"
-        height="45"
+        width="190"
+        height="40"
         viewBox="0 0 260 80"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -27,7 +27,8 @@ export default function Logo({ size = 120, color = "#111" }) {
           font-size="34"
           font-family="Poppins, Arial, sans-serif"
           font-weight="500"
-          fill="#eee"
+          fill="#111"
+          className="text-black"
         >
           Dr!pnow
         </text>
