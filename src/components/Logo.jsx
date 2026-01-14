@@ -27,8 +27,7 @@ export default function Logo({ size = 120, color = "#111" }) {
           font-size="34"
           font-family="Poppins, Arial, sans-serif"
           font-weight="500"
-          fill="#111"
-          className="text-black"
+          fill="#eee"
         >
           Dr!pnow
         </text>

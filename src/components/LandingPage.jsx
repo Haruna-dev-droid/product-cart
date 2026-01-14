@@ -10,6 +10,7 @@ import Cart from "./Cart.jsx";
 
 function LandingPage({ products }) {
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   function toggleCart() {
     setCartIsOpen(!cartIsOpen);
@@ -33,14 +34,18 @@ function LandingPage({ products }) {
         >
           Sign Up
         </NavLink>
-        <div className=" bg-white backdrop-blur-md  top-2 flex gap-53 p-2 h-12 font-bold mx-15 justify-between  text-black items-center rounded-full">
-          <span className="flex items-center -ml-4">
-            <Logo size={50} color={"#111"} />
+        <div className=" md:bg-white  backdrop-blur-md  top-2 flex gap-5 md:gap-53 p-2 h-12 font-bold mx-5 md:mx-15 justify-between text-white md:text-black items-center rounded-full relative">
+          <span className="flex items-center -ml-14 md:-ml-4">
+            <Logo size={50} color={"#eee"} />
           </span>
-          <div className="mr-auto">
+
+          {/* Desktop search (hidden on small screens) */}
+          <div className="mr-auto hidden md:block">
             <SearchFilter products={products} />
           </div>
-          <ul className="flex gap-8 items-center mr-6">
+
+          {/* Desktop nav */}
+          <ul className="hidden md:flex gap-8 items-center mr-6">
             <li className="relative cursor-pointer" onClick={toggleCart}>
               <img src={Icon} className="w-5 h-5 border-red-600" />
               <span className="absolute -top-2 -right-3 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
@@ -49,34 +54,114 @@ function LandingPage({ products }) {
             </li>
 
             <li>
-              {" "}
-              <a href="">Contact</a>{" "}
+              <a href="">Contact</a>
             </li>
 
             <li>
               <NavLink to="/profile" className="border rounded-full p-1">
                 👤
-              </NavLink>{" "}
+              </NavLink>
             </li>
           </ul>
+
+          {/* Mobile hamburger */}
+          <button
+            aria-controls="mobile-menu"
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen(!navOpen)}
+            className="md:hidden p-2 rounded-full -mr-6 hover:bg-gray-100 "
+          >
+            {!navOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            )}
+          </button>
+
+          {/* Mobile menu dropdown */}
+          {navOpen && (
+            <div
+              id="mobile-menu"
+              className="absolute right-2 top-14 bg-white text-black rounded-lg p-4 flex flex-col gap-3 shadow-lg w-56 z-100"
+            >
+              {/* <div onClick={() => setNavOpen(false)}>
+                 <SearchFilter products={products} />
+               
+              </div> */}
+              <div className="flex flex-col  justify-between">
+                <div
+                  className="flex items-center gap-1 cursor-pointer"
+                  onClick={() => {
+                    toggleCart();
+                    setNavOpen(false);
+                  }}
+                >
+                  <img src={Icon} className="w-5 h-5" />
+                  <span className="ml-2 font-bold">
+                    Cart{" "}
+                    {/* <span className="ml-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                      {cart.length}
+                    </span> */}
+                  </span>
+                </div>
+
+                <NavLink
+                  onClick={() => setNavOpen(false)}
+                  to="/profile"
+                  className="mt-8 p-1"
+                >
+                  Profile
+                </NavLink>
+              </div>
+              <a href="" onClick={() => setNavOpen(false)} className="py-2">
+                Contact
+              </a>
+            </div>
+          )}
         </div>
       </div>
-      <div className="relative mt-10 flex-col md:flex-row items-center justify-center min-h-screen p-20 gap-8 ">
+      <div className="relative mt-20 md:mt-10 flex-col md:flex-row items-center justify-center min-h-screen p-6 md:p-20 gap-8 ">
         {/* Text Section */}
         <div className="z-10 relative">
           {/* <h1 className="tracking-[2rem] text-[11rem] bottom-10 relative text-center font-bold bg-gradient-to-r from-white/30 via-white/20 to-gray-200/5 bg-clip-text text-transparent">
             DR!PPING
           </h1> */}
-          <h1 className="text-6xl font-bold">DR!PPING</h1>
+          <h1 className="text-6xl font-bold md:mt-15 ">DR!PPING</h1>
           <div className="mt-10">
-            <h1 className="text-4xl font-semibold  my-3">
+            <h1 className="text-4xl font-semibold -mt-4 my-3 md:-mt-8">
               Welcome to Our Store!
             </h1>
             <p className="mb-8 ">
               Discover amazing products at unbeatable prices. Start shopping
               now!
             </p>
-            <div className="flex justify-center items-center gap-4 w-44 p-3 bg-white rounded-full cursor-pointer hover:scale-105 transition-transform duration-300">
+            <div className="flex justify-center md:-mt-2 items-center gap-4 w-44 p-3 bg-white rounded-full cursor-pointer hover:scale-105 transition-transform duration-300">
               <button className="font-bold text-black">Shop Now</button>
 
               <span className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-lg">
@@ -84,7 +169,7 @@ function LandingPage({ products }) {
               </span>
             </div>
             <div>
-              <div className="mt-10 flex gap-120 border-t pt-6 ">
+              <div className="mt-9 flex gap-6 md:gap-110 border-t pt-6 ">
                 <div>
                   <h2 className="text-2xl font-bold">500+</h2>
                   <p className="text-gray-300">Products</p>
