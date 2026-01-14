@@ -34,7 +34,7 @@ function LandingPage({ products }) {
         >
           Sign Up
         </NavLink>
-        <div className=" md:bg-white  backdrop-blur-md  top-2 flex gap-5 md:gap-53 p-2 h-12 font-bold mx-5 md:mx-15 justify-between text-white md:text-black items-center rounded-full relative">
+        <div className=" md:text-white  backdrop-blur-md  top-2 flex gap-5 md:gap-53 p-2 h-12 font-bold mx-5 md:mx-15 justify-between text-white  items-center rounded-full relative">
           <span className="flex items-center -ml-14 md:-ml-4">
             <Logo size={50} color={"#eee"} />
           </span>

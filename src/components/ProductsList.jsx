@@ -36,7 +36,7 @@ export default function ProductsList({ products: externalProducts, onSelect }) {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold -mt-5 p-20 -mb-30 text-gray-700">
+      <h1 className="text-3xl font-bold -mt-5 md:p-20 py-10 px-7 -mb-30 text-gray-700">
         Product List
       </h1>
 
@@ -45,14 +45,14 @@ export default function ProductsList({ products: externalProducts, onSelect }) {
         setSelectedCategory={setSelectedCategory}
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-5 px-20">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-5 px-5 md:px-20">
         {filteredProducts.map((product) => (
           <div
             key={product.id}
             onClick={() => onSelect && onSelect(product)} // ← NEW
             className="p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col cursor-pointer"
           >
-            <div className="p-5 h-70 flex items-center justify-center mb-4 bg-gray-100 rounded-xl overflow-hidden">
+            <div className="p-5 md:h-70 h-30 flex items-center justify-center mb-4 bg-gray-100 rounded-xl overflow-hidden">
               <img
                 src={product.image}
                 alt={product.title}

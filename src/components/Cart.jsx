@@ -72,8 +72,8 @@ function Cart({ isOpen, onClose }) {
               </button>
             </div>
             <div>
-              <p>Quantity: {item.quantity}</p>
-              <p>Price: ${item.price}</p>
+              <p className="text-sm">Quantity: {item.quantity}</p>
+              <p className="text-sm">Price: ${item.price}</p>
             </div>
           </div>
         ))}
