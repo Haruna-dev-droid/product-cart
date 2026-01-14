@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "./CartContext.jsx";
 import { useState, useEffect } from "react";
 import Cart from "./Cart.jsx";
+import Iconcomplete from "../assets/images/icon-order-confirmed.svg";
 
 function CheckOut({ isOpen, onClose, children }) {
   if (!isOpen) return null;
@@ -19,10 +20,20 @@ function CheckOut({ isOpen, onClose, children }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className=" bg-white p-6 rounded-lg text-center shadow-lg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 max-h-[80vh] overflow-y-auto"
+        className="
+    bg-white/90 p-6 rounded-lg text-center shadow-lg
+    fixed top-1/2 left-1/2
+    transform -translate-x-1/2 -translate-y-1/2
+    w-96 max-h-[80vh] overflow-y-auto no-scrollbar text-black
+  "
       >
         {children}
-        <h1 className="text-8xl text">✅</h1>
+        {/* <h1 className="text-8xl text">✅</h1> */}
+        <img
+          src={Iconcomplete}
+          alt="Order Confirmed"
+          className="w-20 h-20 mx-auto"
+        />
         <h1 className="text-2xl font-bold mt-4">Order Confirmed</h1>
         {cart.map((item) => (
           <div key={item.id}>

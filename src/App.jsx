@@ -82,6 +82,7 @@ import LandingPage from "./components/LandingPage.jsx";
 import ShowProduct from "./components/ShowProduct.jsx";
 import SignUp from "./components/SignUp";
 import Profile from "./components/Profile.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -125,6 +126,7 @@ function App() {
           />
           <Route path="/product/:id" element={<ShowProduct />} />
         </Routes>
+        <Footer />
       </CartProvider>
     </Router>
   );
