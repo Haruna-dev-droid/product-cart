@@ -87,7 +87,7 @@ function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-800 pt-8 text-center text-sm">
-          <p>&copy; 2024 Your Store. All rights reserved.</p>
+          <p>&copy; 2026 Dr!pnow Store. All rights reserved Haruna Samaila.</p>
         </div>
       </div>
     </footer>

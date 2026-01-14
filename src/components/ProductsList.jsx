@@ -74,7 +74,7 @@ export default function ProductsList({ products: externalProducts, onSelect }) {
               <p className="text-orange-600 font-bold">${product.price}</p>
 
               <button
-                className="bg-black/20 hover:bg-black/40 text-white text-sm px-3 py-2 rounded-lg transition-all duration-300"
+                className="bg-black hover:bg-black/40 text-white text-sm px-3 py-2 rounded-lg transition-all duration-300"
                 onClick={(e) => {
                   e.stopPropagation();
                   addToCart(product);

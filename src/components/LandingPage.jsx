@@ -27,7 +27,7 @@ function LandingPage({ products }) {
 
   return (
     <div className=" bg-linear-to-r from-black to-black/95 text-white ">
-      <div className=" p-4 ">
+      <div className="z-50 relative p-4 ">
         <NavLink
           to="/signup"
           className={({ isActive }) => (isActive ? "active" : "")}
@@ -108,7 +108,12 @@ function LandingPage({ products }) {
           {navOpen && (
             <div
               id="mobile-menu"
-              className="absolute right-2 top-14 bg-white text-black rounded-lg p-4 flex flex-col gap-3 shadow-lg w-56 z-100"
+              className="fixed right-2 top-14
+    bg-white text-black
+    rounded-lg p-4
+    flex flex-col gap-3
+    shadow-2xl w-56
+    z-[9999]"
             >
               {/* <div onClick={() => setNavOpen(false)}>
                  <SearchFilter products={products} />
@@ -134,7 +139,7 @@ function LandingPage({ products }) {
                 <NavLink
                   onClick={() => setNavOpen(false)}
                   to="/profile"
-                  className="mt-8 p-1"
+                  className="mt-6 p-1"
                 >
                   Profile
                 </NavLink>
@@ -148,7 +153,7 @@ function LandingPage({ products }) {
       </div>
       <div className="relative mt-20 md:mt-10 flex-col md:flex-row items-center justify-center min-h-screen p-6 md:p-20 gap-8 ">
         {/* Text Section */}
-        <div className="z-10 relative">
+        <div className=" relative">
           {/* <h1 className="tracking-[2rem] text-[11rem] bottom-10 relative text-center font-bold bg-gradient-to-r from-white/30 via-white/20 to-gray-200/5 bg-clip-text text-transparent">
             DR!PPING
           </h1> */}
