@@ -74,10 +74,12 @@ export default function Profile() {
               {userStats.map((stat, index) => (
                 <div
                   key={index}
-                  className="bg-white/10 rounded-xl p-6 shadow-sm border border-slate-200/20"
+                  className="bg-white/10 rounded-xl md:mx-0 mx-auto p-6 shadow-sm border border-slate-200/20"
                 >
                   <p className="text-sm text-slate-500 mb-3">{stat.label}</p>
-                  <p className="text-2xl font-light  mb-4">{stat.value}</p>
+                  <p className="md:text-2xl text-lg font-light  mb-4">
+                    {stat.value}
+                  </p>
 
                   {/* Bar Chart */}
                   <div className="h-1.5 bg-slate-200 rounded-full overflow-hidden">
