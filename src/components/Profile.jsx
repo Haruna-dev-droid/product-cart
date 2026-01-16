@@ -16,9 +16,9 @@ export default function Profile() {
     }
   }, [location.state]);
   const userStats = [
-    { label: "Total Spent", value: "$2,450", percentage: 65 },
-    { label: "Orders", value: "24", percentage: 45 },
-    { label: "Savings", value: "$340", percentage: 80 },
+    { label: "Total Spent", value: "$2,450", percentage: 70 },
+    { label: "Orders", value: "24", percentage: 61 },
+    { label: "Savings", value: "$390", percentage: 87 },
   ];
 
   return (
