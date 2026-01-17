@@ -18,7 +18,7 @@ export default function Profile() {
   const userStats = [
     { label: "Total Spent", value: "$2,450", percentage: 70 },
     { label: "Orders", value: "24", percentage: 61 },
-    { label: "Savings", value: "$390", percentage: 87 },
+    { label: "Savings", value: "$300", percentage: 87 },
   ];
 
   return (
