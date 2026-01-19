@@ -7,10 +7,10 @@ import Iconcomplete from "../assets/images/icon-order-confirmed.svg";
 function CheckOut({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
-  const { cart, getTotalPrice, clearCart } = useCart();
-  function handleClick(onClose, clearCart) {
+  const { cart, getTotalPrice, confirmCart } = useCart();
+  function handleClick(onClose, confirmCart) {
     onClose();
-    clearCart();
+    confirmCart();
   }
 
   return (
@@ -51,7 +51,7 @@ function CheckOut({ isOpen, onClose, children }) {
         </p>
         {/* <Cart /> */}
         <button
-          onClick={() => handleClick(onClose, clearCart)}
+          onClick={() => handleClick(onClose, confirmCart)}
           className="bg-gray-700 text-white font-semibold p-2 rounded-full px-3"
         >
           Start New Order

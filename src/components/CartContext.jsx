@@ -12,7 +12,7 @@ function CartProvider({ children }) {
         return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
-            : item
+            : item,
         );
       } else {
         return [...prevCart, { ...product, quantity: 1 }];
@@ -33,8 +33,8 @@ function CartProvider({ children }) {
       cart.map((item) =>
         item.id === productId && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -43,6 +43,20 @@ function CartProvider({ children }) {
   };
 
   const confirmCart = () => {
+    // Save completed order to localStorage
+    if (cart.length > 0) {
+      const completedOrders = JSON.parse(
+        localStorage.getItem("completedOrders") || "[]",
+      );
+      const newOrder = {
+        id: Date.now(),
+        items: cart,
+        total: getTotalPrice(),
+        date: new Date().toISOString(),
+      };
+      completedOrders.push(newOrder);
+      localStorage.setItem("completedOrders", JSON.stringify(completedOrders));
+    }
     setCart([]);
   };
   return (

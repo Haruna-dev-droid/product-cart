@@ -1,6 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useMemo,
+  useContext,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useCart } from "./CartContext.jsx";
 
 export default function Profile() {
   const location = useLocation();
@@ -8,6 +15,8 @@ export default function Profile() {
     const savedUserData = localStorage.getItem("userData");
     return savedUserData ? JSON.parse(savedUserData) : null;
   });
+  // const { cart, confirmCart } = useCart();
+  const [completedOrders, setCompletedOrders] = useState([]);
 
   useEffect(() => {
     if (location.state?.userData) {
@@ -15,12 +24,42 @@ export default function Profile() {
       localStorage.setItem("userData", JSON.stringify(location.state.userData));
     }
   }, [location.state]);
-  const userStats = [
-    { label: "Total Spent", value: "$2,450", percentage: 70 },
-    { label: "Orders", value: "24", percentage: 61 },
-    { label: "Savings", value: "$300", percentage: 87 },
-  ];
 
+  useEffect(() => {
+    const orders = JSON.parse(localStorage.getItem("completedOrders") || "[]");
+    setCompletedOrders(orders);
+  }, []);
+  const userStats = useMemo(() => {
+    const totalSpent = completedOrders.reduce(
+      (sum, order) => sum + order.total,
+      0,
+    );
+    const orderCount = completedOrders.length;
+    const savingsAmount = totalSpent * 0.1;
+    const monthlyBudget = 3000;
+
+    const spentPercentage = (totalSpent / monthlyBudget) * 100;
+    const ordersPercentage = (orderCount / 50) * 100;
+    const savingPercentage = (savingsAmount / 500) * 100;
+
+    return [
+      {
+        label: "Total Spent",
+        value: `$${totalSpent.toFixed(2)}`,
+        percentage: Math.min(spentPercentage, 100),
+      },
+      {
+        label: "Orders",
+        value: orderCount.toString(),
+        percentage: Math.min(ordersPercentage, 100),
+      },
+      {
+        label: "Savings",
+        value: `${savingsAmount.toFixed(2)}`,
+        percentage: Math.min(savingPercentage, 100),
+      },
+    ];
+  }, [completedOrders]);
   return (
     <div className="min-h-screen bg-black text-white p-8 ">
       <motion.div
@@ -32,14 +71,16 @@ export default function Profile() {
           {/* Header */}
           <div className="flex justify-between items-center mb-12">
             <h1 className="text-3xl font-light ">Profile</h1>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
               <button className="p-2 hover:bg-white rounded-lg transition text-slate-600 text-xl">
                 ⚙️
               </button>
               <button className="p-2 hover:bg-white rounded-lg transition text-slate-600 text-xl">
                 🚪
               </button>
-              <NavLink to="/">Go to Home</NavLink>
+              <NavLink to="/" className="font-bold">
+                Home
+              </NavLink>
             </div>
           </div>
 
@@ -97,17 +138,46 @@ export default function Profile() {
           <div className="bg-white/10 rounded-xl p-6 shadow-sm border border-slate-200/10">
             <h3 className="text-lg font-light  mb-4">Recent Activity</h3>
             <div className="space-y-3">
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="flex justify-between items-center pb-3 border-b border-slate-100 last:border-0"
-                >
-                  <p className="text-sm text-slate-600">
-                    Order #{20240000 + item} completed
-                  </p>
-                  <span className="text-xs text-slate-400">2 days ago</span>
-                </div>
-              ))}
+              {completedOrders.length > 0 ? (
+                completedOrders
+                  .slice()
+                  .reverse()
+                  .map((order) => {
+                    const daysAgo = Math.floor(
+                      (Date.now() - new Date(order.date).getTime()) /
+                        (1000 * 60 * 60 * 24),
+                    );
+                    const timeLabel =
+                      daysAgo === 0
+                        ? "Today"
+                        : daysAgo === 1
+                          ? "Yesterday"
+                          : `${daysAgo} days ago`;
+                    return (
+                      <div
+                        key={order.id}
+                        className="flex justify-between items-center pb-3 border-b border-slate-100 last:border-0"
+                      >
+                        <div>
+                          <p className="text-sm text-slate-600">
+                            Order #{order.id} completed - $
+                            {order.total.toFixed(2)}
+                          </p>
+                          <p className="text-xs text-slate-500">
+                            {order.items.length} item(s)
+                          </p>
+                        </div>
+                        <span className="text-xs text-slate-400">
+                          {timeLabel}
+                        </span>
+                      </div>
+                    );
+                  })
+              ) : (
+                <p className="text-sm text-slate-500">
+                  No completed orders yet
+                </p>
+              )}
             </div>
           </div>
         </div>
