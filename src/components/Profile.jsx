@@ -15,7 +15,7 @@ export default function Profile() {
     const savedUserData = localStorage.getItem("userData");
     return savedUserData ? JSON.parse(savedUserData) : null;
   });
-  // const { cart, confirmCart } = useCart();
+  
   const [completedOrders, setCompletedOrders] = useState([]);
 
   useEffect(() => {
